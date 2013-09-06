@@ -1,7 +1,7 @@
 // Time duration in ms
 var duration = 300;
 
-// Creates a player control inside the player div. The function returned can be used to 
+// Creates a player control inside the player div. The function returned can be used to
 // set the data of the player and the function handler.
 var playerUpdateFn = vdd_core.player.createPlayerFn($("div#player"), {duration: duration - 50});
 
@@ -9,7 +9,7 @@ var h = 400;
 var w = 800;
 
 var chart = d3.select("svg.chart")
-  .attr("width", w) 
+  .attr("width", w)
   .attr("height", h);
 
 var xScale = d3.scale.ordinal()
@@ -66,8 +66,6 @@ function displayData(iterationData) {
     }
   };
 
-  // TODO make the pivot selection thing a separate animation
-
   var bars = chart.selectAll("rect")
     .data(items);
 
@@ -87,19 +85,19 @@ function displayData(iterationData) {
     .attr("fill", colorSelector)
     .attr("width", xScale.rangeBand())
     .attr("height", function(d) { return yScale(d); });
-  
+
   // Rects leaving
   bars.exit()
-    .transition()   
+    .transition()
     .duration(duration)
     //Move past the right edge of the SVG
-    .attr("x", w)   
+    .attr("x", w)
     .remove();
 
   var text = chart.selectAll("text")
     .data(items)
 
-  // text added  
+  // text added
   text.enter()
     .append("text")
     .text(function(d) { return d; })
@@ -112,7 +110,7 @@ function displayData(iterationData) {
 
   // Update existing values
   text
-    .transition()   
+    .transition()
     .duration(duration)
     .text(function(d) { return d; })
     .attr("x", function(d,i) { return xScale(i) + xScale.rangeBand() / 2; })
@@ -120,7 +118,7 @@ function displayData(iterationData) {
 
   // Exiting text removed
   text.exit()
-    .transition()   
+    .transition()
     .duration(duration)
     .text(function(d) { return "so long"; })
     .attr("x", w)   //Move past the right edge of the SVG
