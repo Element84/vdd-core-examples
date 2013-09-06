@@ -1,4 +1,5 @@
 (ns boolean-logic-simplifiers.driver
+  "A driver for visualizing the boolean logic simplifiers code."
   (:require [taoensso.timbre :as timbre
               :refer (debug info warn error)]
             [clojure.edn]
@@ -9,13 +10,13 @@
             [vdd-core.capture-global :as capture])
   (:use [clojure.pprint]))
 
-(defmulti cond->d3 
+(defmulti cond->d3
   "Multimethod to convert a condition into a d3 node."
   (fn [condition] (:type condition)))
 
 (defn make-group-d3-node [{id :id conditions :conditions type :type} title]
   {:name title
-   :_id id 
+   :_id id
    :type type
    :children (map cond->d3 conditions)})
 
@@ -29,24 +30,24 @@
 
 (defmethod cond->d3 :eq
   [{v1 :value1 v2 :value2 id :id}]
-  {:name (format "%s = %s" v1 v2) 
-   :_id id 
+  {:name (format "%s = %s" v1 v2)
+   :_id id
    :type :eq})
 
 (defmethod cond->d3 :gt
   [{v1 :value1 v2 :value2 id :id}]
-  {:name (format "%s > %s" v1 v2) 
-   :_id id 
+  {:name (format "%s > %s" v1 v2)
+   :_id id
    :type :eq})
 
 (defmethod cond->d3 :lt
   [{v1 :value1 v2 :value2 id :id}]
-  {:name (format "%s < %s" v1 v2) 
-   :_id id 
+  {:name (format "%s < %s" v1 v2)
+   :_id id
    :type :eq})
 
 
-(defn- walk-tree 
+(defn- walk-tree
   "Walks an entire condition tree to force side effects. Returns the condition when it's done"
   [c]
   (let [zipped (factory/cond-zipper c)]
@@ -62,7 +63,7 @@
   (capture/reset-captured!)
   (let [root-cond (factory/string->condition logic-str)
         simplified (walk-tree (simplifiers/simplify root-cond))]
-    
+
     (vdd/data->viz {:root (cond->d3 root-cond)
                     :changes (capture/captured)
                     :simplified simplified})))

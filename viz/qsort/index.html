@@ -15,9 +15,11 @@
   <div class="container">
     <h1>Quick Sorting Visualization</h1>
 
-    <input type="text" id="numbers-to-sort" 
-    value="9 0 8 6 2 3 5 4 1 10 7" />
-    <a href="#" id="submit-numbers" class="btn">Submit</a>
+    <div>
+      <input type="text" id="numbers-to-sort"
+      value="9 0 8 6 2 3 5 4 1 10 7" />
+      <a href="#" id="submit-numbers" class="btn">Submit</a>
+    </div>
 
     <!-- Visualization will be drawn in this -->
     <svg class="chart">
@@ -31,7 +33,7 @@
       <p>This is for visualizing code implementing the Quick Sort algorithm. The visualization is implemented using D3.</p>
       <p>The code being visualized is located in <code>vdd-core-examples/src/sorter/</code>. The visualization code is in <code>vdd-core-examples/viz/qsort/</code>.</p>
       <h3>Driving in the REPL</h3>
-      <p>The quick sort code is run every time the submit button is pressed. The output is captured and sent to the visualization. The quick sort code can also be tested and visualized from the REPL. The following code can be run to view quick sorting a shuffled list of 20 numbers.</p> 
+      <p>The quick sort code is run every time the submit button is pressed. The output is captured and sent to the visualization. The quick sort code can also be tested and visualized from the REPL. The following code can be run to view quick sorting a shuffled list of 20 numbers.</p>
       <pre>
 (require '[qsort.driver :as q])
 (q/viz-qsort (shuffle (range 20)))</pre>
@@ -48,6 +50,6 @@
   <!-- visualization specific -->
   <script src="/viz/d3.v3/d3.v3.min.js" charset="utf-8"></script>
   <script src="/viz/qsort/qsort.js"></script>
-  
+
 </body>
 </html>
