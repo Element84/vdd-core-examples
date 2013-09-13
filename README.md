@@ -11,15 +11,9 @@ This contains several examples using the [vdd-core](https://github.com/Element84
     * `(def server (vdd/start-viz))`
   - Visit http://localhost:8080 to see the list of visualizations.
 
-### Project Home
-
 ![VDD Core Home Page](http://element84.github.io/vdd-core/images/project_home.jpg)
 
-### Quick Sort Visualization
-
 ![Quick Sort Visualization](http://element84.github.io/vdd-core/images/quicksort-1.jpg)
-
-### Boolean Simplification Visualization
 
 ![Boolean Simplification Visualization](http://element84.github.io/vdd-core/images/bool_simplifiers.jpg)
 
