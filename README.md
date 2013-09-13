@@ -11,6 +11,8 @@ This contains several examples using the [vdd-core](https://github.com/Element84
     * `(def server (vdd/start-viz))`
   - Visit http://localhost:8080 to see the list of visualizations.
 
+![VDD Core Home Page](http://element84.github.io/vdd-core/images/project_home.jpg)
+
 
 ## License
 
